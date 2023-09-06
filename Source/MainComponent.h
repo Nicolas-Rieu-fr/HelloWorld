@@ -7,6 +7,21 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
+struct Car
+{
+    struct CarSeat
+    {
+        bool seatisLeather;
+    };
+    int numberOfWheels;
+    bool convertible;
+    void accelerate(float howFarToPushthePedal);
+    CarSeat driverSeat;
+    CarSeat PassengerSeat;
+    bool switcheats(CarSeat oldSeat, CarSeat recentSeat);
+    bool test;
+};
+
 class MainComponent  : public juce::Component
 {
 public:

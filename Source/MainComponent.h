@@ -18,8 +18,7 @@ struct Car
     void accelerate(float howFarToPushthePedal);
     CarSeat driverSeat;
     CarSeat PassengerSeat;
-    bool switcheats(CarSeat oldSeat, CarSeat recentSeat);
-    bool test;
+    bool switchSeats(CarSeat oldSeat, CarSeat recentSeat);
 };
 
 class MainComponent  : public juce::Component

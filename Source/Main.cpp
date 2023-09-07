@@ -9,6 +9,98 @@
 #include <JuceHeader.h>
 #include "MainComponent.h"
 
+/*
+struct Person
+{
+    Person();
+    int age, heightInInches, distanceTraveled;
+    float hairLength, GPA;
+    unsigned int SATScore;
+    int run(int howFast, bool startWithLeftFoot);
+    
+};
+*/
+ 
+// Première manière d'initialiser les valeurs
+/*
+Person::Person()
+{
+    age = 0;
+    heightInInches = 0;
+    distanceTraveled = 0;
+    hairLength = 0.f;
+    GPA = 0.f;
+    SATScore = 0;
+}
+*/
+// Deuxième manière d'initialiser les valeurs
+// Person::Person() : age(0), heightInInches(0), distanceTraveled(0), hairLength(0.f), GPA(0.f), SATScore(0) {}
+
+// Troisième manière d'initialiser les valeurs
+
+struct Person
+{
+    int age = 0;
+    int heightInInches = 0;
+    int distanceTraveled = 0;
+    float hairLength = 0.f;
+    float GPA = 0.f;
+    unsigned int SATScore =0;
+    
+    int run(int howFast, bool startWithLeftFoot);
+    void moveAndSetAge(int speed, int newAge);
+    struct Foot
+    {
+        int stepForward()
+        {
+            return 0;
+        }
+    };
+    Foot leftFoot, rightFoot;
+    
+    juce::String name;
+    Person(juce::String personName) : name(personName)
+    {
+        DBG("Person ctor: " + name);
+    };
+    ~Person()
+    {
+        DBG("Person dtor: " + name);
+    };
+};
+
+
+int Person::run(int howFast, bool startWithLeftFoot)
+{
+    if (startWithLeftFoot)
+    {
+        return leftFoot.stepForward() + rightFoot.stepForward();
+    }
+    return rightFoot.stepForward() + leftFoot.stepForward();
+}
+
+void Person::moveAndSetAge(int speed, int newAge)
+{
+    run(speed, true);
+    age = newAge;
+}
+
+void doStuff()
+{
+    Person p{"Nicolas"};
+    p.moveAndSetAge(5, 42);
+}
+
+
+/*
+void Personfunction()
+{
+    Person p;
+}
+*/
+//Person::Person() {}
+ 
+
 //==============================================================================
 class HelloWorldApplication  : public juce::JUCEApplication
 {
@@ -24,7 +116,9 @@ public:
     void initialise (const juce::String& commandLine) override
     {
         // This method is where you should put your application's initialisation code..
-
+        Person person{"Tom"};
+        DBG(person.age);
+        DBG(person.heightInInches);
         mainWindow.reset (new MainWindow (getApplicationName()));
     }
 
